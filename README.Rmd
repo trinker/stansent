@@ -18,7 +18,7 @@ verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg
 [![Coverage Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
 `r verbadge`
 
-**stansent** wraps Stanford's sentiment tagger in a way that makes the process easier to get set up.
+**stansent** wraps Stanford's sentiment tagger in a way that makes the process easier to get set up.  
 
 # Installation
 

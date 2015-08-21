@@ -3,3 +3,4 @@
 export(check_java)
 export(check_setup)
 export(check_stanford_installed)
+export(sentiment_stanford)
