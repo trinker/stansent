@@ -17,6 +17,7 @@ Table of Contents
 
 -   [Installation](#installation)
 -   [Contact](#contact)
+-   [Getting Started](#getting-started)
 
 Installation
 ============
@@ -40,3 +41,30 @@ You are welcome to:
 * submit suggestions and bug-reports at: <https://github.com/trinker/stansent/issues> 
 * send a pull request on: <https://github.com/trinker/stansent/> 
 * compose a friendly e-mail to: <tyler.rinker@gmail.com>
+
+
+Getting Started
+===============
+
+After installing use:
+
+    get_setup()
+
+to make sure your Java version is of the right version and
+[coreNLP](http://nlp.stanford.edu/software/corenlp.shtml) is set up in
+the right location.
+
+After that you can use:
+
+    if (!require("pacman")) install.packages("pacman"); library(pacman)
+    p_load_gh("trinker/stansent")
+
+    sentiment_stanford(c(
+        "My angry text string.  
+        I am a happier text string"
+    ))
+
+    ## 
+    ## Analyzing text for sentiment...
+
+    ## [1] 0 0
