@@ -55,7 +55,7 @@ if (!require("pacman")) install.packages("pacman"); library(pacman)
 p_load_gh("trinker/stansent")
 
 sentiment_stanford(c(
-    "My angry text string.  
-    I am a happier text string"
+    "I am very angry about thiis text.",  
+    "I am now happier about the text string"
 ))
 ```
