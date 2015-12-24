@@ -69,7 +69,7 @@ sentiment_stanford <- function(text.var,
     setwd(WD)
 
     as.numeric(.mgsub(
-        c(".*Very positive", ".*Positive", ".*Neutral", ".*Negative", ".*Very negative"),
+        c(".*Very negative", ".*Negative", ".*Neutral", ".*Positive", ".*Very positive"),
         seq(-1, 1, by = .5),
         results, fixed = FALSE
     ))
