@@ -4,8 +4,8 @@
 \alias{check_stanford_installed}
 \title{Check if Stanford coreNLP is Installed and In Root}
 \usage{
-check_stanford_installed(stanford = "stanford-corenlp-full-2015-04-20",
-  download = "http://nlp.stanford.edu/software/stanford-corenlp-full-2015-04-20.zip")
+check_stanford_installed(stanford = "stanford-corenlp-full-2015-12-09",
+  download = "http://nlp.stanford.edu/software/stanford-corenlp-full-2015-12-09.zip")
 }
 \arguments{
 \item{stanford}{The version of Stanford's coreNLP.}
