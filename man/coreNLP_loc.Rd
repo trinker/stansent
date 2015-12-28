@@ -9,6 +9,9 @@ coreNLP_loc(version = stansent::coreNLP_version)
 
 coreNLP_url(version = stansent::coreNLP_version)
 }
+\arguments{
+\item{version}{The verson of coreNLP.}
+}
 \value{
 returns a path as a string.
 }
