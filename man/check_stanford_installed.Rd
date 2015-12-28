@@ -5,12 +5,15 @@
 \title{Check if Stanford coreNLP is Installed and In Root}
 \usage{
 check_stanford_installed(stanford = stansent::coreNLP_loc(),
-  download = stansent::coreNLP_url())
+  download = stansent::coreNLP_url(), verbose = TRUE)
 }
 \arguments{
 \item{stanford}{The version of Stanford's coreNLP.}
 
 \item{download}{The download url for Stanford's coreNLP.}
+
+\item{verbose}{If \code{TRUE} messages are printed even when everything is
+installed.}
 }
 \description{
 Checks that Stanford coreNLP is installed and in root.

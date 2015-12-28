@@ -3,7 +3,7 @@ update_stanford_version <- function(){
 
     verout <- c("#' Stanford coreNLP Version", "#'", "#' A constant stating the version of coreNLP used as the package default.",
         "#'", "#' @export", "#' @references \\url{http://stanfordnlp.github.io/CoreNLP/index.html#download}",
-        "#' @examples", "#' version", "coreNLP_version <- \"%s\"\n")
+        "#' @examples", "#' coreNLP_version", "coreNLP_version <- \"%s\"\n")
     verout <- paste(verout, collapse="\n")
 
     "http://stanfordnlp.github.io/CoreNLP/index.html#download" %>%
@@ -13,7 +13,9 @@ update_stanford_version <- function(){
       basename() %>%
       gsub("\\.zip$", "", .) %>%
       sprintf(verout, .) %>%
-      cat(., file = "R/version.R")
+      cat(., file = "R/coreNLP_version.R")
 
     message("Version updated")
 }
+
+

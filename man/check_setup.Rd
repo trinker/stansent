@@ -4,7 +4,11 @@
 \alias{check_setup}
 \title{Check the Java/Stanford coreNLP Setup}
 \usage{
-check_setup()
+check_setup(verbose = TRUE)
+}
+\arguments{
+\item{verbose}{If \code{TRUE} messages are printed even when everything is
+installed.}
 }
 \description{
 Check to make sure that Java is installed and of correct version and that

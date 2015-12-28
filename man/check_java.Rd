@@ -4,7 +4,11 @@
 \alias{check_java}
 \title{Check if Java is Installed and Correct Version}
 \usage{
-check_java()
+check_java(verbose = TRUE)
+}
+\arguments{
+\item{verbose}{If \code{TRUE} messages are printed even when everything is
+installed.}
 }
 \description{
 Checks that Java is installed and of the correct version.
