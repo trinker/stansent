@@ -11,8 +11,9 @@
 #' \dontrun{
 #' check_stanford_installed()
 #' }
-check_stanford_installed <- function(stanford = "stanford-corenlp-full-2015-12-09",
-    download = "http://nlp.stanford.edu/software/stanford-corenlp-full-2015-12-09.zip"){
+check_stanford_installed <- function(stanford = stansent::coreNLP_loc(),
+    download = stansent::coreNLP_url()){
+
     message("\nchecking if Java is installed...\n")
     root <- strsplit(getwd(), "(/|\\\\)+")[[1]][1]
     out <- stanford %in% dir(file.path(root, ""))

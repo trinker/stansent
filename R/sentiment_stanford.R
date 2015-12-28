@@ -15,7 +15,7 @@
 #' pacman::p_load(syuzhet)
 #'
 #' text_vector <- unlist(presidential_debates_2012[1:100, "dialogue"])
-#' sents <- get_sentences_nlp(text_vector)
+#' sents <- sent_detect_nlp(text_vector)
 #' senti <- sentiment_stanford(sents)
 #'
 #'
@@ -51,30 +51,25 @@
 #'
 #' options(width=width)
 #' }
-sentiment_stanford <- function(text.var,
-    stanford.tagger = file.path(strsplit(getwd(), "(/|\\\\)+")[[1]][1], "stanford-corenlp-full-2015-04-20")){
+sentiment_stanford <- function (text.var, stanford.tagger = stansent::coreNLP_loc()) {
 
-    if (!file.exists(stanford.tagger)) stop("%s does not seem to be valid", stanford.tagger)
+    if (!file.exists(stanford.tagger)) {
+        check_stanford_installed()
+    }
 
-    message("\nAnalyzing text for sentiment...\n");flush.console()
+    message("\nAnalyzing text for sentiment...\n")
+    flush.console()
 
+    cmd <- sprintf(
+        "java -cp \"%s/*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin",
+        stanford.tagger
+    )
 
-    WD <- getwd()
-    on.exit(setwd(WD))
-    setwd(stanford.tagger)
-
-    cmd <- paste('java -cp "*" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin', sep="")
     results <- system(cmd, input = text.var, intern = TRUE, ignore.stderr = TRUE)
 
-    setwd(WD)
-
-    as.numeric(.mgsub(
-        c(".*Very negative", ".*Negative", ".*Neutral", ".*Positive", ".*Very positive"),
-        seq(-1, 1, by = .5),
-        results, fixed = FALSE
-    ))
+    as.numeric(.mgsub(c(".*Very negative", ".*Negative", ".*Neutral",
+        ".*Positive", ".*Very positive"), seq(-1, 1, by = 0.5),
+        results, fixed = FALSE))
 }
-
-
 
 

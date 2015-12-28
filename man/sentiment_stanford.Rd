@@ -4,8 +4,7 @@
 \alias{sentiment_stanford}
 \title{Wrappper to Standford's coreNLP Sentiment Tagger}
 \usage{
-sentiment_stanford(text.var, stanford.tagger = file.path(strsplit(getwd(),
-  "(/|\\\\\\\\)+")[[1]][1], "stanford-corenlp-full-2015-04-20"))
+sentiment_stanford(text.var, stanford.tagger = stansent::coreNLP_loc())
 }
 \arguments{
 \item{text.var}{The text variable.}
@@ -23,7 +22,7 @@ pacman::p_load_gh("trinker/qdap", "trinker/sentimentr")
 pacman::p_load(syuzhet)
 
 text_vector <- unlist(presidential_debates_2012[1:100, "dialogue"])
-sents <- get_sentences_nlp(text_vector)
+sents <- sent_detect_nlp(text_vector)
 senti <- sentiment_stanford(sents)
 
 
