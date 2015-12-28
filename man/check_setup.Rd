@@ -4,11 +4,13 @@
 \alias{check_setup}
 \title{Check the Java/Stanford coreNLP Setup}
 \usage{
-check_setup(verbose = TRUE)
+check_setup(verbose = TRUE, ...)
 }
 \arguments{
 \item{verbose}{If \code{TRUE} messages are printed even when everything is
 installed.}
+
+\item{\ldots}{Other arguments passed to \code{check_stanford_installed}.}
 }
 \description{
 Check to make sure that Java is installed and of correct version and that
@@ -17,6 +19,7 @@ Stanford's coreNLP is installed and in root.
 \examples{
 \dontrun{
 check_setup()
+check_setup(FALSE)
 }
 }
 \keyword{setup}

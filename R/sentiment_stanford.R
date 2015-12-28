@@ -5,6 +5,7 @@
 #'
 #' @param text.var The text variable.
 #' @param stanford.tagger path to the Stanford tagger.
+#' @param \ldots Other arguments passed to \code{check_stanford_installed}.
 #' @references \url{http://www.matthewjockers.net/2015/03/04/some-thoughts-on-annies-thoughts-about-syuzhet}
 #' @keywords sentiment
 #' @export
@@ -17,8 +18,6 @@
 #' text_vector <- unlist(presidential_debates_2012[1:100, "dialogue"])
 #' sents <- sent_detect_nlp(text_vector)
 #' senti <- sentiment_stanford(sents)
-#'
-#'
 #'
 #' temp <- tempdir()
 #' pang_et_al <- "http://www.cs.cornell.edu/people/pabo/movie-review-data/review_polarity.tar.gz"
@@ -51,10 +50,10 @@
 #'
 #' options(width=width)
 #' }
-sentiment_stanford <- function (text.var, stanford.tagger = stansent::coreNLP_loc()) {
+sentiment_stanford <- function (text.var, stanford.tagger = stansent::coreNLP_loc(), ...) {
 
     if (!file.exists(stanford.tagger)) {
-        check_stanford_installed()
+        check_stanford_installed(...)
     }
 
     message("\nAnalyzing text for sentiment...\n")

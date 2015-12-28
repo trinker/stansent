@@ -4,12 +4,14 @@
 \alias{sentiment_stanford}
 \title{Wrappper to Standford's coreNLP Sentiment Tagger}
 \usage{
-sentiment_stanford(text.var, stanford.tagger = stansent::coreNLP_loc())
+sentiment_stanford(text.var, stanford.tagger = stansent::coreNLP_loc(), ...)
 }
 \arguments{
 \item{text.var}{The text variable.}
 
 \item{stanford.tagger}{path to the Stanford tagger.}
+
+\item{\ldots}{Other arguments passed to \code{check_stanford_installed}.}
 }
 \description{
 Tag sentiment as most negative (-1) to most positive (+1).  A
@@ -24,8 +26,6 @@ pacman::p_load(syuzhet)
 text_vector <- unlist(presidential_debates_2012[1:100, "dialogue"])
 sents <- sent_detect_nlp(text_vector)
 senti <- sentiment_stanford(sents)
-
-
 
 temp <- tempdir()
 pang_et_al <- "http://www.cs.cornell.edu/people/pabo/movie-review-data/review_polarity.tar.gz"

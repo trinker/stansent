@@ -5,14 +5,16 @@
 #'
 #' @param verbose If \code{TRUE} messages are printed even when everything is
 #' installed.
+#' @param \ldots Other arguments passed to \code{check_stanford_installed}.
 #' @keywords setup
 #' @export
 #' @examples
 #' \dontrun{
 #' check_setup()
+#' check_setup(FALSE)
 #' }
-check_setup <- function(verbose = TRUE){
+check_setup <- function(verbose = TRUE, ...){
     check_java(verbose = verbose)
-    check_stanford_installed(verbose = verbose)
+    check_stanford_installed(verbose = verbose, ...)
 }
 
