@@ -17,7 +17,7 @@ check_java <- function(verbose = TRUE){
         "Check to see if it is installed and on your path.\n\n",
         "https://www.java.com/en/download\n\n"
     )
-    java_is_correct_version <- check_java_version()
+    java_is_correct_version <- check_java_version(verbose = verbose)
     if (!java_is_correct_version) stop(
         "Minimal version of Java not installed.  Download:\n\n",
         "https://www.java.com/en/download\n\n"
@@ -34,7 +34,7 @@ check_java_version <- function(min.ver = stansent::java_version, verbose = TRUE)
 
 check_java_installed <- function(verbose = TRUE) {
     if (isTRUE(verbose)) message("\nchecking if Java is installed...\n")
-    out <- try(system('java -version') == 0)
+    out <- try(system('java -version', show.output.on.console = verbose) == 0)
     if (inherits(out, "try-error")) out <- FALSE
     out
 }
