@@ -60,11 +60,11 @@ After that you can use:
     p_load_gh("trinker/stansent")
 
     sentiment_stanford(c(
-        "I am very angry about thiis text.",  
+        "I am very angry about this text.",  
         "I am now happier about the text string"
     ))
 
     ## 
     ## Analyzing text for sentiment...
 
-    ## [1] 0.5 0.0
+    ## [1] -0.5  0.0
