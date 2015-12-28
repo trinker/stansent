@@ -19,7 +19,7 @@ verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg
 `r verbadge`
 
 
-<img src="inst/stansent_logo/core-nlp.png" width="120" alt="coreNLP">  
+<img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">  
 
 **stansent** wraps Stanford's sentiment tagger in a way that makes the process easier to get set up.  
 
