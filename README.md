@@ -8,6 +8,8 @@ Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travi
 Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
 <a href="https://img.shields.io/badge/Version-0.0.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.0.1-orange.svg" alt="Version"/></a>
 </p>
+<img src="inst/stansent_logo/core-nlp.png" width="120" alt="coreNLP">
+
 **stansent** wraps Stanford's sentiment tagger in a way that makes the
 process easier to get set up.
 
@@ -48,7 +50,7 @@ Getting Started
 
 After installing use:
 
-    get_setup()
+    check_setup()
 
 to make sure your Java version is of the right version and
 [coreNLP](http://nlp.stanford.edu/software/corenlp.shtml) is set up in

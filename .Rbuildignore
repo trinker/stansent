@@ -12,6 +12,7 @@ contributors.geojson
 inst/build.R
 ^.*\.Rprofile$
 README.Rmd
+README.html
 README.R
 travis.yml
 inst/stansent_logo
