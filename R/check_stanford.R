@@ -16,7 +16,7 @@
 check_stanford_installed <- function(stanford = stansent::coreNLP_loc(),
     download = stansent::coreNLP_url(), verbose = TRUE){
 
-    if (isTRUE(verbose)) message("\nchecking if Java is installed...\n")
+    if (isTRUE(verbose)) message("\nchecking if coreNLP is installed...\n")
 
     root <- strsplit(getwd(), "(/|\\\\)+")[[1]][1]
     out <- file.exists(stanford)
