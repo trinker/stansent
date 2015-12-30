@@ -4,62 +4,38 @@
 \alias{sentiment_stanford}
 \title{Wrappper to Standford's coreNLP Sentiment Tagger}
 \usage{
-sentiment_stanford(text.var, stanford.tagger = stansent::coreNLP_loc(), ...)
+sentiment_stanford(text.var, hyphen = "", missing_value = 0,
+  stanford.tagger = stansent::coreNLP_loc(), ...)
 }
 \arguments{
 \item{text.var}{The text variable.}
+
+\item{hyphen}{The character string to replace hyphens with.  Default replaces
+with nothing so 'sugar-free' becomes 'sugarfree'.  Setting \code{hyphen = " "}
+would result in a space between words (e.g., 'sugar free').}
+
+\item{missing_value}{A value to replace \code{NA}/\code{NaN} with.  Use
+\code{NULL} to retain missing values.}
 
 \item{stanford.tagger}{path to the Stanford tagger.}
 
 \item{\ldots}{Other arguments passed to \code{check_stanford_installed}.}
 }
+\value{
+Returns a \pkg{data.table} of:
+\itemize{
+  \item  element_id - The id number of the original vector passed to \code{sentiment}
+  \item  sentence_id - The id number of the sentences within each \code{element_id}
+  \item  word_count - Word count
+  \item  sentiment - Sentiment/polarity score
+}
+}
 \description{
 Tag sentiment as most negative (-1) to most positive (+1).  A
 reimplementation of Matthew Jocker's Stanford coreNLP wrapper in \pkg{syuzhet}.
 }
-\examples{
-\dontrun{
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load_gh("trinker/qdap", "trinker/sentimentr")
-pacman::p_load(syuzhet)
-
-text_vector <- unlist(presidential_debates_2012[1:100, "dialogue"])
-sents <- sent_detect_nlp(text_vector)
-senti <- sentiment_stanford(sents)
-
-temp <- tempdir()
-pang_et_al <- "http://www.cs.cornell.edu/people/pabo/movie-review-data/review_polarity.tar.gz"
-download.file(pang_et_al, file.path(temp, basename(pang_et_al)))
-
-untar(file.path(temp, basename(pang_et_al)), exdir = file.path(temp, "out"))
-dirs <- sprintf(file.path(temp, "out/txt_sentoken/\%s"), c("neg", "pos"))
-text_vector <- paste(unlist(lapply(
-    c(file.path(dirs[1], dir(dirs[1])[1]),
-        file.path(dirs[2], dir(dirs[2])[1])
-    ),  readLines)), collapse = " ")
-
-sents <- sentimentr::get_sentences(text_vector)
-
-senti <- lapply(sents[[1]], sentiment_stanford)
-
-syuzhet <- setNames(as.data.frame(lapply(c("bing", "afinn", "nrc"),
-    function(x) get_sentiment(sents[[1]], method=x))), c("bing", "afinn", "nrc"))
-
-width <- options()$width
-options(width=1000)
-
-left_just(data.frame(
-    stanford = unlist(senti),
-    sentimentr = round(sentiment(sents, question.weight = 0)[["sentiment"]], 2),
-    syuzhet,
-    sentences = unlist(sents),
-    stringsAsFactors = FALSE
-), "sentences")
-
-options(width=width)
-}
-}
 \references{
+http://nlp.stanford.edu/software/corenlp.shtml \cr
 \url{http://www.matthewjockers.net/2015/03/04/some-thoughts-on-annies-thoughts-about-syuzhet}
 }
 \keyword{sentiment}

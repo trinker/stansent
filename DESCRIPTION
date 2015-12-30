@@ -7,8 +7,8 @@ Maintainer: Tyler Rinker <tyler.rinker@gmail.com>
 Description: Wraps Stanford's sentiment tagger in a way that makes the
         process easier to get set up.
 Depends: R (>= 3.2.2)
-Suggests: testthat
-Imports: qdapRegex, utils
+Suggests: sentimentr, testthat
+Imports: data.table, ggplot2, graphics, methods, qdapRegex, stringi, syuzhet, textshape, utils
 Date: 2015-12-29
 License: GPL-2
 LazyData: TRUE
