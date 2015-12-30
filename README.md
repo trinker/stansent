@@ -66,7 +66,6 @@ After that you can use:
         "I am now happier about the text string"
     ))
 
-    ## 
-    ## Analyzing text for sentiment...
-
-    ## [1] -0.5  0.0
+    ##    element_id sentence_id word_count sentiment
+    ## 1:          1           1          7      -0.5
+    ## 2:          2           1          8       0.0
