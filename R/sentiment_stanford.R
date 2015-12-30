@@ -46,9 +46,7 @@
 #'
 #' text_vector <- unlist(presidential_debates_2012[1:100, "dialogue"])
 #' sents <- textshape::split_sentence(text_vector)
-#' senti <- sentiment_stanford(sents)
 #'
-#' ## Example comparing methods
 #' temp <- tempdir()
 #' pang_et_al <- "http://www.cs.cornell.edu/people/pabo/movie-review-data/review_polarity.tar.gz"
 #' download.file(pang_et_al, file.path(temp, basename(pang_et_al)))
@@ -62,10 +60,8 @@
 #'
 #' sents <- sentimentr::get_sentences(text_vector)
 #'
-#' senti <- lapply(sents[[1]], sentiment_stanford)
-#'
 #' syuzhet <- setNames(as.data.frame(lapply(c("bing", "afinn", "nrc"),
-#'     function(x) get_sentiment(sents[[1]], method=x))), c("bing", "afinn", "nrc"))
+#'     function(x) syuzhet::get_sentiment(sents[[1]], method=x))), c("bing", "afinn", "nrc"))
 #'
 #' width <- options()$width
 #' options(width=1000)
