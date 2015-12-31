@@ -1,24 +1,6 @@
 stansent
 ============
 
-<tbody>
-<tr class="odd">
-<td align="left">title: &quot;stansent&quot;</td>
-</tr>
-<tr class="even">
-<td align="left">date: &quot;31 December, 2015&quot;</td>
-</tr>
-<tr class="odd">
-<td align="left">output:</td>
-</tr>
-<tr class="even">
-<td align="left">md_document:</td>
-</tr>
-<tr class="odd">
-<td align="left">toc: true</td>
-</tr>
-</tbody>
-</table>
 
 [![Build
 Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
@@ -48,7 +30,17 @@ and run times of the packages.
 Table of Contents
 ============
 
-<table>[<table>](#<table>)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Contact](#contact)
+-   [Demonstration](#demonstration)
+    -   [Load the Packages/Data](#load-the-packagesdata)
+    -   [`sentiment_stanford`](#`sentiment_stanford`)
+    -   [`sentiment_stanford_by`: Aggregation](#`sentiment_stanford_by`-aggregation)
+    -   [Recycling](#recycling)
+    -   [Plotting](#plotting)
+        -   [Plotting at Aggregated Sentiment](#plotting-at-aggregated-sentiment)
+        -   [Plotting at the Sentence Level](#plotting-at-the-sentence-level)
 
 Installation
 ============
@@ -201,7 +193,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~15.7 seconds to compute `out` above). The output from
+compute (~18.2 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
