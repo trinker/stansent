@@ -11,7 +11,7 @@ desc <- suppressWarnings(readLines("DESCRIPTION"))
 regex <- "(^Version:\\s+)(\\d+\\.\\d+\\.\\d+)"
 loc <- grep(regex, desc)
 ver <- gsub(regex, "\\2", desc[loc])
-verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg"><img src="https://img.shields.io/badge/Version-%s-orange.svg" alt="Version"/></a></p>', ver, ver)
+verbadge <- sprintf('<p><a href="https://img.shields.io/badge/Version-%s-orange.svg"><img src="https://img.shields.io/badge/Version-%s-orange.svg" alt="Version"/></a></p>', ver, ver)
 #verbadge <- ""
 ````
 
@@ -61,7 +61,7 @@ There are two main functions in **sentimentr** with a few helper functions.  The
 
 
 | Function                |  Function  |  Description                            |
-|-------------------------|------------------------------------------------------|
+|-------------------------|------------|-----------------------------------------|
 | `sentiment_stanford`    | sentiment  | Sentiment at the sentence level         |
 | `sentiment_stanford_by` | sentiment  | Aggregated sentiment by group(s)        |
 | `uncombine`             | reshaping  | Extract sentence level sentiment from  `sentiment_by` |

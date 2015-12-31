@@ -24,6 +24,7 @@ stansent
 Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
+<p>
 <a href="https://img.shields.io/badge/Version-0.0.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.0.1-orange.svg" alt="Version"/></a>
 </p>
 <img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">
@@ -87,28 +88,34 @@ summarized in the table below:
 <tr class="header">
 <th align="left">Function</th>
 <th align="left">Function</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left"><code>sentiment_stanford</code></td>
 <td align="left">sentiment</td>
+<td align="left">Sentiment at the sentence level</td>
 </tr>
 <tr class="even">
 <td align="left"><code>sentiment_stanford_by</code></td>
 <td align="left">sentiment</td>
+<td align="left">Aggregated sentiment by group(s)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>uncombine</code></td>
 <td align="left">reshaping</td>
+<td align="left">Extract sentence level sentiment from <code>sentiment_by</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>get_sentences</code></td>
 <td align="left">reshaping</td>
+<td align="left">Regex based string to sentence parser (or get sentences from <code>sentiment</code>/<code>sentiment_by</code>)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>check_setup</code></td>
 <td align="left">initial set-up</td>
+<td align="left">Make sure Java and coreNLP are set up correctly</td>
 </tr>
 </tbody>
 </table>
