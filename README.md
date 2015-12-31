@@ -2,6 +2,9 @@ stansent
 ============
 
 
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
 [![Build
 Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
 [![Coverage
@@ -10,7 +13,8 @@ Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](ht
 </p>
 <img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">
 
-**stansent** wraps Stanford's sentiment tagger in a way that makes the
+**stansent** wraps [Stanford's coreNLP sentiment
+tagger](http://nlp.stanford.edu/sentiment/) in a way that makes the
 process easier to get set up. The output is designed to look and behave
 like the objects from the
 [**sentimentr**](https://github.com/trinker/sentimentr) package.
@@ -195,7 +199,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~15.1 seconds to compute `out` above). The output from
+compute (~16.3 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
