@@ -17,7 +17,7 @@ verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg
 
 [![Build Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
 [![Coverage Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
-`r cat(verbadge)`
+`r verbadge`
 
 ```{r, echo=FALSE}
 library(knitr)

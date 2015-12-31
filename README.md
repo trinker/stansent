@@ -6,7 +6,8 @@ stansent
 Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
-
+<a href="https://img.shields.io/badge/Version-0.0.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.0.1-orange.svg" alt="Version"/></a>
+</p>
 <img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">
 
 **stansent** wraps Stanford's sentiment tagger in a way that makes the
@@ -193,7 +194,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~18.2 seconds to compute `out` above). The output from
+compute (~16.7 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
