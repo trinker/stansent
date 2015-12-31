@@ -12,7 +12,7 @@ regex <- "(^Version:\\s+)(\\d+\\.\\d+\\.\\d+)"
 loc <- grep(regex, desc)
 ver <- gsub(regex, "\\2", desc[loc])
 verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg"><img src="https://img.shields.io/badge/Version-%s-orange.svg" alt="Version"/></a></p>', ver, ver)
-verbadge <- ""
+#verbadge <- ""
 ````
 
 [![Build Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
@@ -60,10 +60,10 @@ to make sure your Java version is of the right version and [coreNLP](http://nlp.
 There are two main functions in **sentimentr** with a few helper functions.  The main functions, task category, & descriptions are summarized in the table below:
 
 
-| Function                |  Function  |  Description                                          |
+| Function                |  Function  |  Description                            |
 |-------------------------|------------------------------------------------------|
-| `sentiment_stanford`    | sentiment  | Sentiment at the sentence level                       |
-| `sentiment_stanford_by` | sentiment  | Aggregated sentiment by group(s)                      |
+| `sentiment_stanford`    | sentiment  | Sentiment at the sentence level         |
+| `sentiment_stanford_by` | sentiment  | Aggregated sentiment by group(s)        |
 | `uncombine`             | reshaping  | Extract sentence level sentiment from  `sentiment_by` |
 | `get_sentences`         | reshaping  | Regex based string to sentence parser (or get sentences from `sentiment`/`sentiment_by`)|
 | `check_setup`           | initial set-up |Make sure Java and coreNLP are set up correctly     |
@@ -120,7 +120,7 @@ To aggregate by grouping variables use `sentiment_by` using the `by` argument.
 ```{r, echo=FALSE, results="hide"}
 tic <- Sys.time()
 out3 <- with(dat, sentiment_stanford_by(dialogue, list(person, time)))
-toc <-  round(as.numeric(difftime(Sys.time(), tic, units = 'mins')), 1)
+toc <-  round(as.numeric(difftime(Sys.time(), tic, units = 'secs')), 1)
 ```
 
 
@@ -134,7 +134,7 @@ out3
 
 ## Recycling
 
-Note that the Stanford coreNLP functionality takes considerable time to compute (~`r toc` minutes to compute `out` above).  The output from `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of `sentiment_stanford_by`, reusing the raw scoring to save the new call to Java.
+Note that the Stanford coreNLP functionality takes considerable time to compute (~`r toc` seconds to compute `out` above).  The output from `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of `sentiment_stanford_by`, reusing the raw scoring to save the new call to Java.
 
 
 ```{r}
