@@ -14,9 +14,9 @@ Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](ht
 process easier to get set up. The output is designed to look and behave
 like the objects from the
 [**sentimentr**](https://github.com/trinker/sentimentr) package.
-Plotting and the `sentimentr::highlight` functionality will work with
-similar to the `sentiment`/`sentiment_by` objects from **sentimentr**.
-This requires less learning to work between the two packages.
+Plotting and the `sentimentr::highlight` functionality will work similar
+to the `sentiment`/`sentiment_by` objects from **sentimentr**. This
+requires less learning to work between the two packages.
 
 In addition the **sentimentr** and **stansent**, Matthew Jocker's has
 created the
@@ -42,6 +42,7 @@ Table of Contents
     -   [Plotting](#plotting)
         -   [Plotting at Aggregated Sentiment](#plotting-at-aggregated-sentiment)
         -   [Plotting at the Sentence Level](#plotting-at-the-sentence-level)
+    -   [Text Highlighting](#text-highlighting)
 
 Installation
 ============
@@ -136,7 +137,7 @@ Load the Packages/Data
         'Do you really like it?  I\'m not a fan'
     )
 
-    data(presidential_debates_2012)
+    data(presidential_debates_2012, cannon_reviews)
     set.seed(100)
     dat <- presidential_debates_2012[sample(1:nrow(presidential_debates_2012), 100), ]
 
@@ -194,7 +195,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~16.7 seconds to compute `out` above). The output from
+compute (~15.1 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
@@ -239,3 +240,18 @@ overall shape of the text's sentiment. The user can see
     plot(uncombine(out3))
 
 ![](inst/figure/unnamed-chunk-11-1.png)
+
+Text Highlighting
+-----------------
+
+The user may wish to see the output from `sentiment_stanford_by` line by
+line with positive/negative sentences highlighted. The
+`sentimentr::highlight` function wraps a `sentiment_by` output to
+produces a highlighted HTML file (positive = green; negative = pink).
+Here we look at three random reviews from Hu and Liu's (2004) Cannon G3
+Camera Amazon product reviews.
+
+    set.seed(2)
+    highlight(with(subset(cannon_reviews, number %in% sample(unique(number), 3)), sentiment_stanford_by(review, number)))
+
+![](inst/figure/highlight.png)
