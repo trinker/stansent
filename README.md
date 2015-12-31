@@ -40,8 +40,8 @@ Table of Contents
 -   [Contact](#contact)
 -   [Demonstration](#demonstration)
     -   [Load the Packages/Data](#load-the-packagesdata)
-    -   [`sentiment_stanford`](#`sentiment_stanford`)
-    -   [`sentiment_stanford_by`: Aggregation](#`sentiment_stanford_by`-aggregation)
+    -   [sentiment_stanford](#sentiment_stanford)
+    -   [sentiment_stanford_by: Aggregation](#sentiment_stanford_by-aggregation)
     -   [Recycling](#recycling)
     -   [Plotting](#plotting)
         -   [Plotting at Aggregated Sentiment](#plotting-at-aggregated-sentiment)
@@ -199,7 +199,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~16.3 seconds to compute `out` above). The output from
+compute (~16 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
