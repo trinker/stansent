@@ -23,6 +23,7 @@
 #' @keywords sentiment
 #' @export
 #' @examples
+#' \dontrun{
 #' mytext <- c(
 #'    'do you like it?  But I hate really bad dogs',
 #'    'I am the best friend.',
@@ -39,13 +40,9 @@
 #' y <- "He was not the sort of man that one would describe as especially handsome."
 #' sentiment_stanford(y)
 #'
-#' \dontrun{
 #' if (!require("pacman")) install.packages("pacman")
 #' pacman::p_load_gh("trinker/textshape", "trinker/sentimentr")
 #' pacman::p_load(syuzhet)
-#'
-#' text_vector <- unlist(presidential_debates_2012[1:100, "dialogue"])
-#' sents <- textshape::split_sentence(text_vector)
 #'
 #' temp <- tempdir()
 #' pang_et_al <- "http://www.cs.cornell.edu/people/pabo/movie-review-data/review_polarity.tar.gz"
@@ -58,7 +55,7 @@
 #'         file.path(dirs[2], dir(dirs[2])[1])
 #'     ),  readLines)), collapse = " ")
 #'
-#' sents <- sentimentr::get_sentences(text_vector)
+#' sents <- textshape::split_sentence(text_vector)[[1]]
 #'
 #' syuzhet <- setNames(as.data.frame(lapply(c("bing", "afinn", "nrc"),
 #'     function(x) syuzhet::get_sentiment(sents[[1]], method=x))), c("bing", "afinn", "nrc"))
@@ -144,6 +141,7 @@ plot.sentiment <- function(x, ...){
     ggplot2::ggplot(dat, ggplot2::aes_string('Duration', 'Emotional_Valence')) +
         ggplot2::geom_path(size=1, color="blue") +
         ggplot2::theme_bw() +
+        ggplot2::theme(plot.margin = grid::unit(c(5.1, 15.1, 4.1, 2.1), "pt")) +
         ggplot2::ylab("Emotional Valence") +
         ggplot2::theme(panel.grid = ggplot2::element_blank()) +
         ggplot2::scale_x_continuous(label=function(x) paste0(x, "%"),

@@ -1,4 +1,4 @@
----
+--
 title: "stansent"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
@@ -21,7 +21,9 @@ verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg
 
 <img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">  
 
-**stansent** wraps Stanford's sentiment tagger in a way that makes the process easier to get set up.  
+**stansent** wraps Stanford's sentiment tagger in a way that makes the process easier to get set up.  The output is designed to look and behave like the objects from the [**sentimentr**](https://github.com/trinker/sentimentr) package.  Plotting and the `sentimentr::highlight` functionality will work with  similar to the `sentiment`/`sentiment_by` objects from **sentimentr**.  This requires less learning to work between the two packages.  
+
+In addition the **sentimentr** and **Stansent**, Matthew Jocker's created the [**syuzhet** ](http://www.matthewjockers.net/2015/02/02/syuzhet/) package that utilizes dictionary lookups for the Bing, NRC, and Afinn methods.  [Click here for a comparison](https://github.com/trinker/sentimentr#comparing-sentimentr-syuzhet-and-stanford) between **stansent**, **sentimentr**, and **syuzhet**.  Note the accuracy and run times of the packages.
 
 # Installation
 
@@ -33,6 +35,29 @@ Download the [zip ball](https://github.com/trinker/stansent/zipball/master) or [
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load_gh("trinker/stansent")
 ```
+After installing use the following to ensure Java and coreNLP are installed correctly:
+
+```
+check_setup()
+```
+
+to make sure your Java version is of the right version and [coreNLP](http://nlp.stanford.edu/software/corenlp.shtml) is set up in the right location.
+
+
+# Usage
+
+There are two main functions in **sentimentr** with a few helper functions.  The main functions, task category, & descriptions are summarized in the table below:
+
+
+| Function                |  Function  |  Description                                          |
+|-------------------------|------------------------------------------------------|
+| `sentiment_stanford`    | sentiment  | Sentiment at the sentence level                       |
+| `sentiment_stanford_by` | sentiment  | Aggregated sentiment by group(s)                      |
+| `uncombine`             | reshaping  | Extract sentence level sentiment from  `sentiment_by` |
+| `get_sentences`         | reshaping  | Regex based string to sentence parser (or get sentences from `sentiment`/`sentiment_by`)|
+| `check_setup`           | initial set-up |Make sure Java and coreNLP are set up correctly     |
+
+
 
 # Contact
 
@@ -41,24 +66,93 @@ You are welcome to:
 * send a pull request on: <https://github.com/trinker/stansent/>
 * compose a friendly e-mail to: <tyler.rinker@gmail.com>
 
-# Getting Started
+#Demonstration
 
-After installing use:
+## Load the Packages/Data
 
+```{r, message=FALSE}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load_gh(c("trinker/stansent", "trinker/sentimentr"))
+pacman::p_load(dplyr)
+
+mytext <- c(
+    'do you like it?  But I hate really bad dogs',
+    'I am the best friend.',
+    'Do you really like it?  I\'m not a fan'
+)
+
+data(presidential_debates_2012)
+set.seed(100)
+dat <- presidential_debates_2012[sample(1:nrow(presidential_debates_2012), 100), ]
 ```
-check_setup()
-```
 
-to make sure your Java version is of the right version and [coreNLP](http://nlp.stanford.edu/software/corenlp.shtml) is set up in the right location.
-
-After that you can use:
+## `sentiment_stanford`
 
 ```{r}
-if (!require("pacman")) install.packages("pacman"); library(pacman)
-p_load_gh("trinker/stansent")
-
-sentiment_stanford(c(
-    "I am very angry about this text.",  
-    "I am now happier about the text string"
-))
+out1 <- sentiment_stanford(mytext) 
+out1[["text"]] <- unlist(get_sentences(out1))
+out1
 ```
+
+## `sentiment_stanford_by`: Aggregation
+
+To aggregate by element (column cell or vector element) use `sentiment_stanford_by` with `by = NULL`.
+
+```{r}
+out2 <- sentiment_stanford_by(mytext) 
+out2[["text"]] <- mytext
+out2
+```
+
+To aggregate by grouping variables use `sentiment_by` using the `by` argument.
+
+```{r, echo=FALSE, results="hide"}
+tic <- Sys.time()
+out3 <- with(dat, sentiment_stanford_by(dialogue, list(person, time)))
+toc <-  round(as.numeric(difftime(Sys.time(), tic, units = 'mins')), 1)
+```
+
+
+```{r, eval=FALSE}
+(out3 <- with(dat, sentiment_stanford_by(dialogue, list(person, time))))
+```
+
+```{r, echo=FALSE}
+out3
+```
+
+## Recycling
+
+Note that the Stanford coreNLP functionality takes considerable time to compute (~`r toc` minutes to compute `out` above).  The output from `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of `sentiment_stanford_by`, reusing the raw scoring to save the new call to Java.
+
+
+```{r}
+with(dat, sentiment_stanford_by(out3, list(role, time)))
+```
+
+## Plotting 
+
+### Plotting at Aggregated Sentiment
+
+The possible sentiment values in the output are {`r paste(seq(-1, 1, by = .5), collapse = ", ")`}.  The raw number of occurrences as each sentiment level are plotted as a bubble version of [Cleveland's dot plot](https://en.wikipedia.org/wiki/Dot_plot_(statistics)).  The red cross represents the mean sentiment score (grouping variables are ordered by this by default).  The density is captured as a whiskerless boxplot.
+
+
+```{r, warning=FALSE}
+plot(out3)
+```
+
+### Plotting at the Sentence Level
+
+The `plot` method for the class `sentiment` uses **syuzhet**'s `get_transformed_values` combined with **ggplot2** to make a reasonable, smoothed plot for the duration of the text based on percentage, allowing for comparison between plots of different texts.  This plot gives the overall shape of the text's sentiment.  The user can see `syuzhet::get_transformed_values` for more details.
+
+```{r}
+plot(uncombine(out3))
+```
+
+
+
+
+
+
+
+

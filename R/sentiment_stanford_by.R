@@ -25,6 +25,7 @@
 #' @export
 #' @family sentiment functions
 #' @examples
+#' \dontrun{
 #' sentiment_stanford_bymytext <- c(
 #'    'do you like it?  But I hate really bad dogs',
 #'    'I am the best friend.',
@@ -48,7 +49,15 @@
 #' plot(out2)
 #' plot(out2, 10)
 #' plot(uncombine(out2))
-#' plot(uncombine(out2))
+#'
+#' ## Hilighting
+#' sentimentr::highlight(
+#'     with(
+#'         sentimentr::cannon_reviews,
+#'         sentiment_stanford_by(review, number)
+#'     )
+#' )
+#' }
 sentiment_stanford_by <- function(text.var, by = NULL, group.names, ...){
 
     word_count <- ave_sentiment <- NULL
@@ -153,6 +162,7 @@ plot.sentiment_stanford_by <- function(x, max = 20, ...){
         ggplot2::coord_flip() +
         ggplot2::theme_bw() +
         ggplot2::guides(color=FALSE) +
+        ggplot2::scale_y_continuous(limits = c(-1, 1), breaks=seq(-1, 1, by = .5)) +
         ggplot2::ylab("Sentiment") +
         ggplot2::xlab("Groups") +
         ggplot2::theme(panel.grid = ggplot2::element_blank()) +

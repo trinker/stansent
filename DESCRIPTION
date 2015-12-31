@@ -1,5 +1,5 @@
 Package: stansent
-Title: Wrapper of Stanford's Sentiment Tagger
+Title: Wrapper of Stanford's coreNLP Sentiment Tagger
 Version: 0.0.1
 Authors@R: c(person("Tyler", "Rinker", email =
         "tyler.rinker@gmail.com", role = c("aut", "cre")))
@@ -8,8 +8,9 @@ Description: Wraps Stanford's sentiment tagger in a way that makes the
         process easier to get set up.
 Depends: R (>= 3.2.2)
 Suggests: sentimentr, testthat
-Imports: data.table, ggplot2, graphics, methods, qdapRegex, stringi, syuzhet, textshape, utils
-Date: 2015-12-29
+Imports: data.table, ggplot2, graphics, grid, methods, qdapRegex,
+        stringi, syuzhet, textshape, utils
+Date: 2015-12-31
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

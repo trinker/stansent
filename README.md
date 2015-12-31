@@ -1,6 +1,8 @@
 stansent
 ============
 
+============
+
 
 [![Build
 Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
@@ -21,8 +23,15 @@ Table of Contents
 -   [Contact](#contact)
 -   [Getting Started](#getting-started)
 
+
+Table of Contents
+============
+
+stansent[stansent](#stansent)
+
 Installation
 ============
+
 
 
 To download the development version of **stansent**:
@@ -39,10 +48,8 @@ the development version:
 Contact
 =======
 
-You are welcome to: 
-* submit suggestions and bug-reports at: <https://github.com/trinker/stansent/issues> 
-* send a pull request on: <https://github.com/trinker/stansent/> 
-* compose a friendly e-mail to: <tyler.rinker@gmail.com>
+You are welcome to:  * submit suggestions and bug-reports at: <https://github.com/trinker/stansent/issues>  * send a pull request on: <https://github.com/trinker/stansent/>  * compose a friendly e-mail to: <tyler.rinker@gmail.com>
+
 
 
 Getting Started
