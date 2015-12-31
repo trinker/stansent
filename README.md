@@ -31,7 +31,26 @@ comparison](https://github.com/trinker/sentimentr#comparing-sentimentr-syuzhet-a
 between **stansent**, **sentimentr**, and **syuzhet**. Note the accuracy
 and run times of the packages.
 
-Table of Contents ============ - [Installation](#installation) - [Usage](#usage) - [Contact](#contact) - [Demonstration](#demonstration) - [Load the Packages/Data](#load-the-packagesdata) - [`sentiment_stanford`](#sentiment_stanford) - [`sentiment_stanford_by`: Aggregation](#sentiment_stanford_by-aggregation) - [Recycling](#recycling) - [Plotting](#plotting) - [Plotting at Aggregated Sentiment](#plotting-at-aggregated-sentiment) - [Plotting at the Sentence Level](#plotting-at-the-sentence-level) - [Text Highlighting](#text-highlighting) Installation ============
+
+Table of Contents
+============
+
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Contact](#contact)
+-   [Demonstration](#demonstration)
+    -   [Load the Packages/Data](#load-the-packagesdata)
+    -   [`sentiment_stanford`](#sentiment_stanford)
+    -   [`sentiment_stanford_by`: Aggregation](#sentiment_stanford_by-aggregation)
+    -   [Recycling](#recycling)
+    -   [Plotting](#plotting)
+        -   [Plotting at Aggregated Sentiment](#plotting-at-aggregated-sentiment)
+        -   [Plotting at the Sentence Level](#plotting-at-the-sentence-level)
+    -   [Text Highlighting](#text-highlighting)
+
+Installation
+============
+
 
 To download the development version of **stansent**:
 
@@ -180,7 +199,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~15.9 seconds to compute `out` above). The output from
+compute (~14.8 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
