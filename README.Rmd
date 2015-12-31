@@ -12,6 +12,7 @@ regex <- "(^Version:\\s+)(\\d+\\.\\d+\\.\\d+)"
 loc <- grep(regex, desc)
 ver <- gsub(regex, "\\2", desc[loc])
 verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg"><img src="https://img.shields.io/badge/Version-%s-orange.svg" alt="Version"/></a></p>', ver, ver)
+verbadge <- ""
 ````
 
 [![Build Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
@@ -23,7 +24,7 @@ verbadge <- sprintf('<a href="https://img.shields.io/badge/Version-%s-orange.svg
 
 **stansent** wraps Stanford's sentiment tagger in a way that makes the process easier to get set up.  The output is designed to look and behave like the objects from the [**sentimentr**](https://github.com/trinker/sentimentr) package.  Plotting and the `sentimentr::highlight` functionality will work with  similar to the `sentiment`/`sentiment_by` objects from **sentimentr**.  This requires less learning to work between the two packages.  
 
-In addition the **sentimentr** and **Stansent**, Matthew Jocker's created the [**syuzhet** ](http://www.matthewjockers.net/2015/02/02/syuzhet/) package that utilizes dictionary lookups for the Bing, NRC, and Afinn methods.  [Click here for a comparison](https://github.com/trinker/sentimentr#comparing-sentimentr-syuzhet-and-stanford) between **stansent**, **sentimentr**, and **syuzhet**.  Note the accuracy and run times of the packages.
+In addition the **sentimentr** and **stansent**, Matthew Jocker's has created the [**syuzhet** ](http://www.matthewjockers.net/2015/02/02/syuzhet/) package that utilizes dictionary lookups for the Bing, NRC, and Afinn methods.  [Click here for a comparison](https://github.com/trinker/sentimentr#comparing-sentimentr-syuzhet-and-stanford) between **stansent**, **sentimentr**, and **syuzhet**.  Note the accuracy and run times of the packages.
 
 # Installation
 
