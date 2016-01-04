@@ -159,13 +159,13 @@ sentiment_stanford_helper <- function (text.var,
         check_stanford_installed(...)
     }
 
-    #text.var <- gsub("[.?!](?!$)", " ", gsub("(?<=[.?!])[.?!]+$", "", text.var, perl = TRUE), perl = TRUE)
+    text.var <- gsub("[.?!](?!$)", " ", gsub("(?<=[.?!])[.?!]+$", "", text.var, perl = TRUE), perl = TRUE)
 
     #message("\nAnalyzing text for sentiment...\n")
 
     cmd <- sprintf(
-        "%s -cp \"%s/*\" -mx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators \"tokenize,ssplit,parse,sentiment\" -ssplit.eolonly",
-        #"%s -cp \"%s/*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin",
+        #"%s -cp \"%s/*\" -mx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators \"tokenize,ssplit,parse,sentiment\" -ssplit.eolonly",
+        "%s -cp \"%s/*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin",
         java.path, stanford.tagger
     )
 
