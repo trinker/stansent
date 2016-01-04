@@ -164,7 +164,7 @@ sentiment_stanford_helper <- function (text.var,
     #message("\nAnalyzing text for sentiment...\n")
 
     cmd <- sprintf(
-        "java -cp \"%s/*\" -mx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators \"tokenize,ssplit,parse,sentiment\" -ssplit.eolonly",
+        "%s -cp \"%s/*\" -mx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators \"tokenize,ssplit,parse,sentiment\" -ssplit.eolonly",
         #"%s -cp \"%s/*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin",
         java.path, stanford.tagger
     )
