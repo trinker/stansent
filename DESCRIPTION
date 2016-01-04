@@ -10,7 +10,7 @@ Depends: R (>= 3.2.2)
 Suggests: sentimentr, testthat
 Imports: data.table, ggplot2, graphics, grid, methods, qdapRegex,
         stringi, syuzhet, textshape, utils
-Date: 2015-12-31
+Date: 2016-01-03
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)

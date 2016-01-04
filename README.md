@@ -149,15 +149,26 @@ Load the Packages/Data
 --------------------
 
     out1 <- sentiment_stanford(mytext) 
+
+    ## Warning: running command 'java -cp "C:/stanford-corenlp-full-2015-12-09/*"
+    ## -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin' had status 1
+
+    ## Warning in sentiment_stanford_helper(sentences, stanford.tagger =
+    ## stanford.tagger, : NAs introduced by coercion
+
+    ## Warning in `[.data.table`(sent_dat[, list(sentences = unlist(sentences)), :
+    ## Supplied 2 items to be assigned to 5 items of column 'sentiment' (recycled
+    ## leaving remainder of 1 items).
+
     out1[["text"]] <- unlist(get_sentences(out1))
     out1
 
     ##    element_id sentence_id word_count sentiment                       text
-    ## 1:          1           1          4       0.0            do you like it?
-    ## 2:          1           2          6      -0.5 But I hate really bad dogs
-    ## 3:          2           1          5       0.5      I am the best friend.
-    ## 4:          3           1          5       0.0     Do you really like it?
-    ## 5:          3           2          4      -0.5              I'm not a fan
+    ## 1:          1           1          4         0            do you like it?
+    ## 2:          1           2          6         0 But I hate really bad dogs
+    ## 3:          2           1          5         0      I am the best friend.
+    ## 4:          3           1          5         0     Do you really like it?
+    ## 5:          3           2          4         0              I'm not a fan
 
 `sentiment_stanford_by`: Aggregation
 ------------------------------------
@@ -166,13 +177,24 @@ To aggregate by element (column cell or vector element) use
 `sentiment_stanford_by` with `by = NULL`.
 
     out2 <- sentiment_stanford_by(mytext) 
+
+    ## Warning: running command 'java -cp "C:/stanford-corenlp-full-2015-12-09/*"
+    ## -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin' had status 1
+
+    ## Warning in sentiment_stanford_helper(sentences, stanford.tagger =
+    ## stanford.tagger, : NAs introduced by coercion
+
+    ## Warning in `[.data.table`(sent_dat[, list(sentences = unlist(sentences)), :
+    ## Supplied 2 items to be assigned to 5 items of column 'sentiment' (recycled
+    ## leaving remainder of 1 items).
+
     out2[["text"]] <- mytext
     out2
 
-    ##    element_id word_count        sd ave_sentiment
-    ## 1:          1         10 0.3535534         -0.25
-    ## 2:          2          5        NA          0.50
-    ## 3:          3          9 0.3535534         -0.25
+    ##    element_id word_count sd ave_sentiment
+    ## 1:          1         10  0             0
+    ## 2:          2          5 NA             0
+    ## 3:          3          9  0             0
     ##                                           text
     ## 1: do you like it?  But I hate really bad dogs
     ## 2:                       I am the best friend.
@@ -181,39 +203,45 @@ To aggregate by element (column cell or vector element) use
 To aggregate by grouping variables use `sentiment_by` using the `by`
 argument.
 
+    ## Warning: running command 'java -cp "C:/stanford-corenlp-full-2015-12-09/*"
+    ## -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin' had status 1
+
+    ## Warning in sentiment_stanford_helper(sentences, stanford.tagger =
+    ## stanford.tagger, : NAs introduced by coercion
+
     (out3 <- with(dat, sentiment_stanford_by(dialogue, list(person, time))))
 
-    ##        person   time word_count        sd ave_sentiment
-    ##  1:     OBAMA time 2        207 0.4042260    0.11111111
-    ##  2:     OBAMA time 1         34 0.7071068    0.00000000
-    ##  3:    LEHRER time 1          2        NA    0.00000000
-    ##  4:  QUESTION time 2          7 0.7071068    0.00000000
-    ##  5: SCHIEFFER time 3         47 0.5000000    0.00000000
-    ##  6:    ROMNEY time 3        321 0.3746794   -0.09615385
-    ##  7:     OBAMA time 3        129 0.4166667   -0.11111111
-    ##  8:   CROWLEY time 2         72 0.4166667   -0.11111111
-    ##  9:    ROMNEY time 2        323 0.3875534   -0.17391304
-    ## 10:    ROMNEY time 1         95 0.2236068   -0.40000000
+    ##        person   time word_count sd ave_sentiment
+    ##  1:     OBAMA time 1         34  0             0
+    ##  2:     OBAMA time 2        207  0             0
+    ##  3:     OBAMA time 3        129  0             0
+    ##  4:    ROMNEY time 1         95  0             0
+    ##  5:    ROMNEY time 2        323  0             0
+    ##  6:    ROMNEY time 3        321  0             0
+    ##  7:   CROWLEY time 2         72  0             0
+    ##  8:    LEHRER time 1          2 NA             0
+    ##  9:  QUESTION time 2          7  0             0
+    ## 10: SCHIEFFER time 3         47  0             0
 
 Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~14.8 seconds to compute `out` above). The output from
+compute (~0.2 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
 
     with(dat, sentiment_stanford_by(out3, list(role, time)))
 
-    ##         role   time word_count        sd ave_sentiment
-    ## 1: moderator time 1          2        NA    0.00000000
-    ## 2: moderator time 3         47 0.5000000    0.00000000
-    ## 3:     other time 2          7 0.7071068    0.00000000
-    ## 4: candidate time 2        530 0.4154046   -0.04878049
-    ## 5: candidate time 3        450 0.3796283   -0.10000000
-    ## 6: moderator time 2         72 0.4166667   -0.11111111
-    ## 7: candidate time 1        129 0.3933979   -0.28571429
+    ##         role   time word_count sd ave_sentiment
+    ## 1: candidate time 1        129  0             0
+    ## 2: candidate time 2        530  0             0
+    ## 3: candidate time 3        450  0             0
+    ## 4: moderator time 1          2 NA             0
+    ## 5: moderator time 2         72  0             0
+    ## 6: moderator time 3         47  0             0
+    ## 7:     other time 2          7  0             0
 
 Plotting
 --------
