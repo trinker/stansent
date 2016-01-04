@@ -10,6 +10,8 @@
 #' would result in a space between words (e.g., 'sugar free').
 #' @param missing_value A value to replace \code{NA}/\code{NaN} with.  Use
 #' \code{NULL} to retain missing values.
+#' @param java.path Path to where \pkg{Java} resides.  If  \pkg{Java} is on your
+#' path the minimal \code{java.path = "java"} is all that should be required.
 #' @param \ldots Other arguments passed to \code{check_stanford_installed}.
 #' @return Returns a \pkg{data.table} of:
 #' \itemize{
@@ -74,7 +76,7 @@
 #' options(width=width)
 #' }
 sentiment_stanford <- function(text.var, hyphen = "", missing_value = 0,
-    stanford.tagger = stansent::coreNLP_loc(), ...){
+    stanford.tagger = stansent::coreNLP_loc(), java.path = "java", ...){
 
     sentiment <- .N <- NULL
 
@@ -89,7 +91,8 @@ sentiment_stanford <- function(text.var, hyphen = "", missing_value = 0,
        'sentences' := punctuation_reducer(sentences, hyphen = hyphen)][,
        'sentence_id' := seq_len(.N), by='element_id'][,
        'word_count' := replace_zero(stringi::stri_count_words(sentences))][,
-       'sentiment' := sentiment_stanford_helper(sentences, stanford.tagger = stanford.tagger, ...)]
+       'sentiment' := sentiment_stanford_helper(sentences,
+           stanford.tagger = stanford.tagger, java.path = java.path, ...)]
 
 
     if (!is.null(missing_value)){
@@ -149,20 +152,21 @@ plot.sentiment <- function(x, ...){
 
 }
 
-sentiment_stanford_helper <- function (text.var, stanford.tagger = stansent::coreNLP_loc(), ...) {
+sentiment_stanford_helper <- function (text.var,
+    stanford.tagger = stansent::coreNLP_loc(), java.path = "java", ...) {
 
     if (!file.exists(stanford.tagger)) {
         check_stanford_installed(...)
     }
 
-    text.var <- gsub("[.?!](?!$)", " ", gsub("(?<=[.?!])[.?!]+$", "", text.var, perl = TRUE), perl = TRUE)
+    #text.var <- gsub("[.?!](?!$)", " ", gsub("(?<=[.?!])[.?!]+$", "", text.var, perl = TRUE), perl = TRUE)
 
     #message("\nAnalyzing text for sentiment...\n")
 
     cmd <- sprintf(
-        #"java -cp \"%s/*\" -mx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators \"tokenize,ssplit,parse,sentiment\" -ssplit.eolonly",
-        "java -cp \"%s/*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin",
-        stanford.tagger
+        "java -cp \"%s/*\" -mx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators \"tokenize,ssplit,parse,sentiment\" -ssplit.eolonly",
+        #"%s -cp \"%s/*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin",
+        java.path, stanford.tagger
     )
 
     results <- system(cmd, input = text.var, intern = TRUE, ignore.stderr = TRUE)

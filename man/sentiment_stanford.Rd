@@ -5,7 +5,7 @@
 \title{Wrappper to Standford's coreNLP Sentiment Tagger}
 \usage{
 sentiment_stanford(text.var, hyphen = "", missing_value = 0,
-  stanford.tagger = stansent::coreNLP_loc(), ...)
+  stanford.tagger = stansent::coreNLP_loc(), java.path = "java", ...)
 }
 \arguments{
 \item{text.var}{The text variable.}
@@ -18,6 +18,9 @@ would result in a space between words (e.g., 'sugar free').}
 \code{NULL} to retain missing values.}
 
 \item{stanford.tagger}{path to the Stanford tagger.}
+
+\item{java.path}{Path to where \pkg{Java} resides.  If  \pkg{Java} is on your
+path the minimal \code{java.path = "java"} is all that should be required.}
 
 \item{\ldots}{Other arguments passed to \code{check_stanford_installed}.}
 }
