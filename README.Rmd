@@ -45,7 +45,7 @@ Download the [zip ball](https://github.com/trinker/stansent/zipball/master) or [
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load_gh("trinker/stansent")
+pacman::p_load_gh(c("trinker/textshape", "trinker/stansent"))
 ```
 After installing use the following to ensure Java and coreNLP are installed correctly:
 
