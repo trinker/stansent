@@ -67,7 +67,7 @@ sentiment_stanford_by <- function(text.var, by = NULL, group.names, ...){
         if (methods::is(text.var, "sentiment")){
             out <- text.var
         } else {
-            out <- sentiment_stanford(text.var = text.var, ...)
+            out <- sentiment_stanford(text.var = gsub('\\s+', ' ', text.var), ...)
         }
     }
 
