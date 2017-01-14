@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_java.R
 \name{check_java}
 \alias{check_java}
-\title{Check if Java is Installed and Correct Version}
+\title{Check if \pkg{Java} is Installed and Correct Version}
 \usage{
 check_java(verbose = TRUE)
 }
@@ -11,7 +11,7 @@ check_java(verbose = TRUE)
 installed.}
 }
 \description{
-Checks that Java is installed and of the correct version.
+Checks that \pkg{Java} is installed and of the correct version.
 }
 \examples{
 \dontrun{

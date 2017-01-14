@@ -26,8 +26,9 @@ period_reg <- paste0(
         "|",
     "(?:(?<=[A-Z])\\.(?=\\s??[A-Z]\\.))",
         "|",
-    "(?:(?<=[A-Z])\\.(?!\\s[A-Z][A-Za-z]))"
+    "(?:(?<=[A-Z])\\.(?!\\s+[A-Z][A-Za-z]))"  #added \\s to \\s+ to handle 'I went to AU.  Awesome school.'
 )
+
 
 
 
@@ -44,10 +45,25 @@ sent_regex2 <- sprintf("((?<=\\b(%s))\\.)|%s|(%s)",
 )
 
 get_sents <- function(x) {
-	if (methods::is(x, "get_sentences")) return(x)
-    y <- stringi::stri_trans_tolower(stringi::stri_replace_all_regex(trimws(x), sent_regex, ""))
-    stringi::stri_split_regex(y, "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)(\\s|(?=[a-zA-Z][a-zA-Z]*\\s))")
+    if (methods::is(x, "get_sentences")) return(x)
+    y <- stringi::stri_replace_all_regex(trimws(x), sent_regex, "<<<TEMP>>>")
+    z <- stringi::stri_split_regex(y, "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)(\\s|(?=[a-zA-Z][a-zA-Z]*\\s))")
+    lapply(z, function(x) gsub("<<<temp>>>", "", stringi::stri_trans_tolower(x)))
 }
+
+# get_sents <- function(x) {
+#     if (methods::is(x, "get_sentences")) return(x)
+#     y <- stringi::stri_replace_all_regex(trimws(x), sent_regex, "")
+#     z <- stringi::stri_split_regex(y, "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)(\\s|(?=[a-zA-Z][a-zA-Z]*\\s))")
+#     lapply(z, stringi::stri_trans_tolower)
+# }
+
+# get_sents <- function(x) {
+# 	if (methods::is(x, "get_sentences")) return(x)
+#     y <- stringi::stri_trans_tolower(stringi::stri_replace_all_regex(trimws(x), sent_regex, ""))
+#     stringi::stri_split_regex(y, "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)(\\s|(?=[a-zA-Z][a-zA-Z]*\\s))")
+# }
+
 
 #get_sents <- function(x) {
 #	if (is(x, "get_sentences")) return(x)
@@ -69,6 +85,11 @@ count_words <- function(x){
     stringi::stri_count_words(x)
 }
 
+make_words <- function(x, hyphen = ""){
+	  if (hyphen != "") x <- gsub("-", hyphen, x)
+    lapply(stringi::stri_split_regex(gsub("^\\s+|\\s+$", "", x), "[[:space:]]|(?=[,;:])"), function(y) gsub('~{2,}', ' ', y))
+}
+
 #' @importFrom data.table :=
 make_sentence_df2 <- function(sents){
 
@@ -83,8 +104,9 @@ make_sentence_df2 <- function(sents){
         stringsAsFactors = FALSE
     )
     data.table::setDT(dat)
-    dat[, indx:= wc < 1, by=c('id', 'sentences', 'wc')][(indx), c('sentences', 'wc'):=NA, with=FALSE][, indx:=NULL]
+    dat[, indx:= wc < 1, by=c('id', 'sentences', 'wc')][(indx), c('sentences', 'wc'):=NA][, indx:=NULL]
 }
+
 
 .mgsub <- function (pattern, replacement, text.var, fixed = TRUE,
 	order.pattern = fixed, ...) {

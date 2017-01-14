@@ -3,13 +3,13 @@
 \docType{data}
 \name{java_version}
 \alias{java_version}
-\title{Java Version}
+\title{\pkg{Java} Version}
 \format{An object of class \code{character} of length 1.}
 \usage{
 java_version
 }
 \description{
-A constant stating the minimal version of Java needed.
+A constant stating the minimal version of \pkg{Java} needed.
 }
 \examples{
 java_version

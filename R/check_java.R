@@ -1,6 +1,6 @@
-#' Check if Java is Installed and Correct Version
+#' Check if \pkg{Java} is Installed and Correct Version
 #'
-#' Checks that Java is installed and of the correct version.
+#' Checks that \pkg{Java} is installed and of the correct version.
 #'
 #' @param verbose If \code{TRUE} messages are printed even when everything is
 #' installed.

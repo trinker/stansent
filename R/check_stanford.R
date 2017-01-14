@@ -32,14 +32,14 @@ check_stanford_installed <- function(stanford = stansent::coreNLP_loc(),
 
         ans <- utils::menu(c("Yes", "No"))
         if (ans == "2") {
-            stop("Please consider installing yourself...\n\nhttp://nlp.stanford.edu/software/corenlp.shtml")
+            stop("Please consider installing yourself...\n\nhttp://stanfordnlp.github.io/CoreNLP")
         } else {
             message("Let me try...\nHold on.  It's large and may take some time...\n")
         }
 
         temp <- tempdir()
         dest <- file.path(temp, basename(download))
-        download.file(download, dest)
+        utils::download.file(download, dest)
         utils::unzip(dest, exdir = temp)
         stan <- gsub("\\.zip$", "", dest)
         if (!file.exists(stan)) stop(

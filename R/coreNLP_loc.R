@@ -2,7 +2,7 @@
 #'
 #' Make a user specific path/URL to coreNLP.
 #'
-#' @param version The verson of coreNLP.
+#' @param version The version of coreNLP.
 #' @return returns a path as a string.
 #' @rdname coreNLP_loc
 #' @export

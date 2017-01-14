@@ -1,6 +1,6 @@
-#' Java Version
+#' \pkg{Java} Version
 #'
-#' A constant stating the minimal version of Java needed.
+#' A constant stating the minimal version of \pkg{Java} needed.
 #'
 #' @export
 #' @examples

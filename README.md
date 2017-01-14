@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travis-ci.org/trinker/stansent)
 [![Coverage
 Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
-<a href="https://img.shields.io/badge/Version-0.0.1-orange.svg"><img src="https://img.shields.io/badge/Version-0.0.1-orange.svg" alt="Version"/></a>
+<a href="https://img.shields.io/badge/Version-0.2.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.2.0-orange.svg" alt="Version"/></a>
 </p>
 <img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">
 
@@ -22,14 +22,17 @@ Plotting and the `sentimentr::highlight` functionality will work similar
 to the `sentiment`/`sentiment_by` objects from **sentimentr**. This
 requires less learning to work between the two packages.
 
-In addition the **sentimentr** and **stansent**, Matthew Jocker's has
+In addition to **sentimentr** and **stansent**, Matthew Jocker's has
 created the
 [**syuzhet**](http://www.matthewjockers.net/2015/02/02/syuzhet/) package
 that utilizes dictionary lookups for the Bing, NRC, and Afinn methods.
+Similarly, Subhasree Bose has contributed
+[RSentiment](https://CRAN.R-project.org/package=RSentiment) which
+utilizes dictionary lookup that atempts to address negation and sarcasm.
 [Click here for a
-comparison](https://github.com/trinker/sentimentr#comparing-sentimentr-syuzhet-and-stanford)
-between **stansent**, **sentimentr**, and **syuzhet**. Note the accuracy
-and run times of the packages.
+comparison](https://github.com/trinker/sentimentr#comparing-sentimentr-syuzhet-rsentiment-and-stanford)
+between **stansent**, **sentimentr**, **syuzhet**, and **RSentiment**.
+Note the accuracy and run times of the packages.
 
 
 Table of Contents
@@ -61,7 +64,7 @@ and run `R CMD INSTALL` on it, or use the **pacman** package to install
 the development version:
 
     if (!require("pacman")) install.packages("pacman")
-    pacman::p_load_gh(c("trinker/textshape", "trinker/stansent"))
+    pacman::p_load_gh("trinker/stansent")
 
 After installing use the following to ensure Java and coreNLP are
 installed correctly:
@@ -79,44 +82,48 @@ There are two main functions in **sentimentr** with a few helper
 functions. The main functions, task category, & descriptions are
 summarized in the table below:
 
-<table>
+<table style="width:112%;">
 <colgroup>
-<col width="32%" />
-<col width="16%" />
-<col width="51%" />
+<col width="36%" />
+<col width="18%" />
+<col width="58%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Function</th>
-<th>Function</th>
-<th>Description</th>
+<th align="left">Function</th>
+<th align="left">Function</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>sentiment_stanford</code></td>
-<td>sentiment</td>
-<td>Sentiment at the sentence level</td>
+<td align="left"><code>sentiment_stanford</code></td>
+<td align="left">sentiment</td>
+<td align="left">Sentiment at the sentence level</td>
 </tr>
 <tr class="even">
-<td><code>sentiment_stanford_by</code></td>
-<td>sentiment</td>
-<td>Aggregated sentiment by group(s)</td>
+<td align="left"><code>sentiment_stanford_by</code></td>
+<td align="left">sentiment</td>
+<td align="left">Aggregated sentiment by group(s)</td>
 </tr>
 <tr class="odd">
-<td><code>uncombine</code></td>
-<td>reshaping</td>
-<td>Extract sentence level sentiment from <code>sentiment_by</code></td>
+<td align="left"><code>uncombine</code></td>
+<td align="left">reshaping</td>
+<td align="left">Extract sentence level sentiment from <code>sentiment_by</code></td>
 </tr>
 <tr class="even">
-<td><code>get_sentences</code></td>
-<td>reshaping</td>
-<td>Regex based string to sentence parser (or get sentences from <code>sentiment</code>/<code>sentiment_by</code>)</td>
+<td align="left"><code>get_sentences</code></td>
+<td align="left">reshaping</td>
+<td align="left">Regex based string to sentence parser (or get sentences from <code>sentiment</code>/<code>sentiment_by</code>)</td>
 </tr>
 <tr class="odd">
-<td><code>check_setup</code></td>
-<td>initial set-up</td>
-<td>Make sure Java and coreNLP are set up correctly</td>
+<td align="left"><code>highlight</code></td>
+<td align="left">Highlight positive/negative sentences as an HTML document</td>
+</tr>
+<tr class="even">
+<td align="left"><code>check_setup</code></td>
+<td align="left">initial set-up</td>
+<td align="left">Make sure Java and coreNLP are set up correctly</td>
 </tr>
 </tbody>
 </table>
@@ -128,7 +135,6 @@ You are welcome to:
 - submit suggestions and bug-reports at: <https://github.com/trinker/stansent/issues>    
 - send a pull request on: <https://github.com/trinker/stansent/>    
 - compose a friendly e-mail to: <tyler.rinker@gmail.com>    
-
 
 Demonstration
 =============
@@ -204,7 +210,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~13.5 seconds to compute `out` above). The output from
+compute (~12.3 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
