@@ -81,7 +81,7 @@ sentiment_stanford <- function(text.var, hyphen = "", missing_value = 0,
     sentiment <- .N <- NULL
 
     # break rows into sentences, count words
-    sents <- textshape::split_sentence(text.var)
+    sents <- textshape::split_sentence(gsub('\\s+', ' ', text.var))
 
     sent_dat <- data.frame(element_id = seq_along(sents))
     sent_dat[["sentences"]] <- sents
