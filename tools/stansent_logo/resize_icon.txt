@@ -1,0 +1,2 @@
+cd C:\Users\Tyler\GitHub\stansent\tools\stansent_logo
+ffmpeg -i core-nlpa.jpg -vf scale=150:-1 core-nlp.jpg

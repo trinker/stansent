@@ -76,7 +76,7 @@
 #' options(width=width)
 #' }
 sentiment_stanford <- function(text.var, hyphen = "", missing_value = 0,
-    stanford.tagger = stansent::coreNLP_loc(), java.path = "java", ...){
+    stanford.tagger = coreNLPsetup::coreNLP_loc(), java.path = "java", ...){
 
     sentiment <- .N <- NULL
 
@@ -126,15 +126,18 @@ replace_zero <- function(x, y = NA) {x[x == 0] <- y; x}
 #' Plots a sentiment object.
 #'
 #' @param x The sentiment object.
+#' @param transformation.function A transformation function to smooth the sentiment
+#' scores.
 #' @param \ldots Other arguments passed to \code{\link[syuzhet]{get_transformed_values}}.
 #' @details Utilizes Matthew Jocker's \pkg{syuzhet} package to calculate smoothed
 #' sentiment across the duration of the text.
 #' @return Returns a \pkg{ggplot2} object.
 #' @method plot sentiment
+#' @importFrom syuzhet get_dct_transform
 #' @export
-plot.sentiment <- function(x, ...){
+plot.sentiment <- function(x, transformation.function = syuzhet::get_dct_transform, ...){
 
-    m <- syuzhet::get_transformed_values(stats::na.omit(x[["sentiment"]]), ...)
+    m <- transformation.function(stats::na.omit(x[["sentiment"]]), ...)
 
     dat <- data.frame(
         Emotional_Valence = m,
@@ -152,11 +155,12 @@ plot.sentiment <- function(x, ...){
 
 }
 
+
 sentiment_stanford_helper <- function (text.var,
     stanford.tagger = stansent::coreNLP_loc(), java.path = "java", ...) {
 
     if (!file.exists(stanford.tagger)) {
-        check_stanford_installed(...)
+        coreNLPsetup::check_stanford_installed(...)
     }
 
     text.var <- gsub("[.?!](?!$)", " ", gsub("(?<=[.?!])[.?!]+$", "", text.var, perl = TRUE), perl = TRUE)

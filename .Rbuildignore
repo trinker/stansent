@@ -15,7 +15,9 @@ README.Rmd
 README.html
 README.R
 travis.yml
-inst/stansent_logo
+tools/parsent_logo/core-nlpa.jpg
+tools/parsent_logo/resize_icon.txt
+Thumbs.db
 inst/staticdocs
 inst/extra_statdoc
 inst/maintenance.R

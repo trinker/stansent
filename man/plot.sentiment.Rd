@@ -4,10 +4,14 @@
 \alias{plot.sentiment}
 \title{Plots a sentiment object}
 \usage{
-\method{plot}{sentiment}(x, ...)
+\method{plot}{sentiment}(x,
+  transformation.function = syuzhet::get_dct_transform, ...)
 }
 \arguments{
 \item{x}{The sentiment object.}
+
+\item{transformation.function}{A transformation function to smooth the sentiment
+scores.}
 
 \item{\ldots}{Other arguments passed to \code{\link[syuzhet]{get_transformed_values}}.}
 }
@@ -21,4 +25,3 @@ Plots a sentiment object.
 Utilizes Matthew Jocker's \pkg{syuzhet} package to calculate smoothed
 sentiment across the duration of the text.
 }
-

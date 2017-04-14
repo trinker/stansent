@@ -28,10 +28,10 @@ knit_hooks$set(htmlcap = function(before, options, envir) {
     }
     })
 knitr::opts_knit$set(self.contained = TRUE, cache = FALSE)
-knitr::opts_chunk$set(fig.path = "inst/figure/")
+knitr::opts_chunk$set(fig.path = "tools/figure/")
 ```
 
-<img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">  
+![](tools/stansent_logo/core-nlp.jpg)  
 
 **stansent** wraps [Stanford's coreNLP sentiment tagger](http://nlp.stanford.edu/sentiment/) in a way that makes the process easier to get set up.  The output is designed to look and behave like the objects from the [**sentimentr**](https://github.com/trinker/sentimentr) package.  Plotting and the `sentimentr::highlight` functionality will work  similar to the `sentiment`/`sentiment_by` objects from **sentimentr**.  This requires less learning to work between the two packages.  
 
@@ -56,7 +56,7 @@ check_setup()
 to make sure your Java version is of the right version and [coreNLP](http://nlp.stanford.edu/software/corenlp.shtml) is set up in the right location.
 
 
-# Usage
+# Functions
 
 There are two main functions in **sentimentr** with a few helper functions.  The main functions, task category, & descriptions are summarized in the table below:
 

@@ -8,12 +8,12 @@ Description: Wraps Stanford's sentiment tagger in a way that makes the
         process easier to get set up.
 Depends: R (>= 3.2.2)
 Suggests: testthat
-Imports: data.table, ggplot2, graphics, grid, methods, qdapRegex,
+Imports: coreNLPsetup, data.table, ggplot2, graphics, grid, methods, qdapRegex,
         sentimentr, stringi, syuzhet, textshape, utils
-Date: 2017-01-14
+Date: 2017-04-13
 License: GPL-2
 LazyData: TRUE
 Roxygen: list(wrap = FALSE)
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 URL: http://github.com/trinker/stansent
 BugReports: http://github.com/trinker/stansent/issues

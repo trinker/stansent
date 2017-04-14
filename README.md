@@ -11,7 +11,7 @@ Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travi
 Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
 <a href="https://img.shields.io/badge/Version-0.2.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.2.0-orange.svg" alt="Version"/></a>
 </p>
-<img src="inst/stansent_logo/core-nlp.jpg" width="120" alt="coreNLP">
+![](tools/stansent_logo/core-nlp.jpg)
 
 **stansent** wraps [Stanford's coreNLP sentiment
 tagger](http://nlp.stanford.edu/sentiment/) in a way that makes the
@@ -34,26 +34,8 @@ comparison](https://github.com/trinker/sentimentr#comparing-sentimentr-syuzhet-r
 between **stansent**, **sentimentr**, **syuzhet**, and **RSentiment**.
 Note the accuracy and run times of the packages.
 
-
-Table of Contents
-============
-
--   [Installation](#installation)
--   [Usage](#usage)
--   [Contact](#contact)
--   [Demonstration](#demonstration)
-    -   [Load the Packages/Data](#load-the-packagesdata)
-    -   [`sentiment_stanford`](#sentiment_stanford)
-    -   [`sentiment_stanford_by`: Aggregation](#sentiment_stanford_by-aggregation)
-    -   [Recycling](#recycling)
-    -   [Plotting](#plotting)
-        -   [Plotting at Aggregated Sentiment](#plotting-at-aggregated-sentiment)
-        -   [Plotting at the Sentence Level](#plotting-at-the-sentence-level)
-    -   [Text Highlighting](#text-highlighting)
-
 Installation
 ============
-
 
 To download the development version of **stansent**:
 
@@ -75,55 +57,74 @@ to make sure your Java version is of the right version and
 [coreNLP](http://nlp.stanford.edu/software/corenlp.shtml) is set up in
 the right location.
 
-Usage
-=====
+
+Table of Contents
+============
+
+-   [Installation](#installation)
+-   [Functions](#functions)
+-   [Contact](#contact)
+-   [Demonstration](#demonstration)
+    -   [Load the Packages/Data](#load-the-packagesdata)
+    -   [`sentiment_stanford`](#sentiment_stanford)
+    -   [`sentiment_stanford_by`: Aggregation](#sentiment_stanford_by-aggregation)
+    -   [Recycling](#recycling)
+    -   [Plotting](#plotting)
+        -   [Plotting at Aggregated Sentiment](#plotting-at-aggregated-sentiment)
+        -   [Plotting at the Sentence Level](#plotting-at-the-sentence-level)
+    -   [Text Highlighting](#text-highlighting)
+
+Functions
+============
+
 
 There are two main functions in **sentimentr** with a few helper
 functions. The main functions, task category, & descriptions are
 summarized in the table below:
 
-<table style="width:112%;">
+<table>
 <colgroup>
-<col width="36%" />
-<col width="18%" />
-<col width="58%" />
+<col width="32%" />
+<col width="16%" />
+<col width="51%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Function</th>
-<th align="left">Function</th>
-<th align="left">Description</th>
+<th>Function</th>
+<th>Function</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>sentiment_stanford</code></td>
-<td align="left">sentiment</td>
-<td align="left">Sentiment at the sentence level</td>
+<td><code>sentiment_stanford</code></td>
+<td>sentiment</td>
+<td>Sentiment at the sentence level</td>
 </tr>
 <tr class="even">
-<td align="left"><code>sentiment_stanford_by</code></td>
-<td align="left">sentiment</td>
-<td align="left">Aggregated sentiment by group(s)</td>
+<td><code>sentiment_stanford_by</code></td>
+<td>sentiment</td>
+<td>Aggregated sentiment by group(s)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>uncombine</code></td>
-<td align="left">reshaping</td>
-<td align="left">Extract sentence level sentiment from <code>sentiment_by</code></td>
+<td><code>uncombine</code></td>
+<td>reshaping</td>
+<td>Extract sentence level sentiment from <code>sentiment_by</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>get_sentences</code></td>
-<td align="left">reshaping</td>
-<td align="left">Regex based string to sentence parser (or get sentences from <code>sentiment</code>/<code>sentiment_by</code>)</td>
+<td><code>get_sentences</code></td>
+<td>reshaping</td>
+<td>Regex based string to sentence parser (or get sentences from <code>sentiment</code>/<code>sentiment_by</code>)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>highlight</code></td>
-<td align="left">Highlight positive/negative sentences as an HTML document</td>
+<td><code>highlight</code></td>
+<td>Highlight positive/negative sentences as an HTML document</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><code>check_setup</code></td>
-<td align="left">initial set-up</td>
-<td align="left">Make sure Java and coreNLP are set up correctly</td>
+<td><code>check_setup</code></td>
+<td>initial set-up</td>
+<td>Make sure Java and coreNLP are set up correctly</td>
 </tr>
 </tbody>
 </table>
@@ -195,22 +196,22 @@ argument.
     (out3 <- with(dat, sentiment_stanford_by(dialogue, list(person, time))))
 
     ##        person   time word_count        sd ave_sentiment
-    ##  1:     OBAMA time 2        207 0.4042260    0.11111111
-    ##  2:     OBAMA time 1         34 0.7071068    0.00000000
-    ##  3:    LEHRER time 1          2        NA    0.00000000
-    ##  4:  QUESTION time 2          7 0.7071068    0.00000000
-    ##  5: SCHIEFFER time 3         47 0.5000000    0.00000000
-    ##  6:    ROMNEY time 3        321 0.3746794   -0.09615385
-    ##  7:     OBAMA time 3        129 0.4166667   -0.11111111
-    ##  8:   CROWLEY time 2         72 0.4166667   -0.11111111
-    ##  9:    ROMNEY time 2        323 0.3875534   -0.17391304
-    ## 10:    ROMNEY time 1         95 0.2236068   -0.40000000
+    ##  1:     OBAMA time 2        207 0.4042260     0.1493099
+    ##  2:     OBAMA time 1         34 0.7071068     0.0000000
+    ##  3:    LEHRER time 1          2        NA     0.0000000
+    ##  4:  QUESTION time 2          7 0.7071068     0.0000000
+    ##  5: SCHIEFFER time 3         47 0.5000000     0.0000000
+    ##  6:     OBAMA time 3        129 0.4166667    -0.1393260
+    ##  7:   CROWLEY time 2         72 0.4166667    -0.1393260
+    ##  8:    ROMNEY time 3        321 0.3746794    -0.1508172
+    ##  9:    ROMNEY time 2        323 0.3875534    -0.2293311
+    ## 10:    ROMNEY time 1         95 0.2236068    -0.4138598
 
 Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~12.3 seconds to compute `out` above). The output from
+compute (~11.9 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
@@ -218,13 +219,13 @@ Java.
     with(dat, sentiment_stanford_by(out3, list(role, time)))
 
     ##         role   time word_count        sd ave_sentiment
-    ## 1: moderator time 1          2        NA    0.00000000
-    ## 2: moderator time 3         47 0.5000000    0.00000000
-    ## 3:     other time 2          7 0.7071068    0.00000000
-    ## 4: candidate time 2        530 0.4154046   -0.04878049
-    ## 5: candidate time 3        450 0.3796283   -0.10000000
-    ## 6: moderator time 2         72 0.4166667   -0.11111111
-    ## 7: candidate time 1        129 0.3933979   -0.28571429
+    ## 1: candidate time 1        129 0.3933979   -0.29271628
+    ## 2: candidate time 2        530 0.4154046   -0.06751165
+    ## 3: candidate time 3        450 0.3796283   -0.15455530
+    ## 4: moderator time 1          2        NA    0.00000000
+    ## 5: moderator time 2         72 0.4166667   -0.13932602
+    ## 6: moderator time 3         47 0.5000000    0.00000000
+    ## 7:     other time 2          7 0.7071068    0.00000000
 
 Plotting
 --------
@@ -241,7 +242,7 @@ boxplot.
 
     plot(out3)
 
-![](inst/figure/unnamed-chunk-10-1.png)
+![](tools/figure/unnamed-chunk-10-1.png)
 
 ### Plotting at the Sentence Level
 
@@ -254,7 +255,7 @@ overall shape of the text's sentiment. The user can see
 
     plot(uncombine(out3))
 
-![](inst/figure/unnamed-chunk-11-1.png)
+![](tools/figure/unnamed-chunk-11-1.png)
 
 Text Highlighting
 -----------------

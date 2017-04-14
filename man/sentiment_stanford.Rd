@@ -5,7 +5,7 @@
 \title{Wrappper to Standford's coreNLP Sentiment Tagger}
 \usage{
 sentiment_stanford(text.var, hyphen = "", missing_value = 0,
-  stanford.tagger = stansent::coreNLP_loc(), java.path = "java", ...)
+  stanford.tagger = coreNLPsetup::coreNLP_loc(), java.path = "java", ...)
 }
 \arguments{
 \item{text.var}{The text variable.}
@@ -42,4 +42,3 @@ http://nlp.stanford.edu/software/corenlp.shtml \cr
 \url{http://www.matthewjockers.net/2015/03/04/some-thoughts-on-annies-thoughts-about-syuzhet}
 }
 \keyword{sentiment}
-

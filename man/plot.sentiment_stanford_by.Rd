@@ -19,4 +19,3 @@ Returns a \pkg{ggplot2} object.
 \description{
 Plots a sentiment_stanford_by object.
 }
-
