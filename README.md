@@ -213,7 +213,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~12.9 seconds to compute `out` above). The output from
+compute (~14.5 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
