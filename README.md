@@ -239,8 +239,8 @@ The raw number of occurrences as each sentiment level are plotted as a
 bubble version of [Cleveland's dot
 plot](https://en.wikipedia.org/wiki/Dot_plot_(statistics)). The red
 cross represents the mean sentiment score (grouping variables are
-ordered by this by default). The density is captured as a whiskerless
-boxplot.
+ordered by this by default). 
+
 
     plot(out3)
 

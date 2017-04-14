@@ -148,7 +148,7 @@ with(dat, sentiment_stanford_by(out3, list(role, time)))
 
 ### Plotting at Aggregated Sentiment
 
-The possible sentiment values in the output are {`r paste(seq(-1, 1, by = .5), collapse = ", ")`}.  The raw number of occurrences as each sentiment level are plotted as a bubble version of [Cleveland's dot plot](https://en.wikipedia.org/wiki/Dot_plot_(statistics)).  The red cross represents the mean sentiment score (grouping variables are ordered by this by default).  The density is captured as a whiskerless boxplot.
+The possible sentiment values in the output are {`r paste(seq(-1, 1, by = .5), collapse = ", ")`}.  The raw number of occurrences as each sentiment level are plotted as a bubble version of [Cleveland's dot plot](https://en.wikipedia.org/wiki/Dot_plot_(statistics)).  The red cross represents the mean sentiment score (grouping variables are ordered by this by default).  
 
 
 ```{r, warning=FALSE}
