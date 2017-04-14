@@ -173,7 +173,7 @@ set.seed(2)
 highlight(with(subset(cannon_reviews, number %in% sample(unique(number), 3)), sentiment_stanford_by(review, number)))
 ```
 
-![](inst/figure/highlight.png)
+![](tools/figure/highlight.png)
 
 
 

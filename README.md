@@ -11,6 +11,8 @@ Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travi
 Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
 <a href="https://img.shields.io/badge/Version-0.2.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.2.0-orange.svg" alt="Version"/></a>
 </p>
+
+
 ![](tools/stansent_logo/core-nlp.jpg)
 
 **stansent** wraps [Stanford's coreNLP sentiment
@@ -211,7 +213,7 @@ Recycling
 ---------
 
 Note that the Stanford coreNLP functionality takes considerable time to
-compute (~11.9 seconds to compute `out` above). The output from
+compute (~12.9 seconds to compute `out` above). The output from
 `sentiment_stanford`/`sentiment_stanford_by` can be recycled inside of
 `sentiment_stanford_by`, reusing the raw scoring to save the new call to
 Java.
@@ -270,4 +272,4 @@ Camera Amazon product reviews.
     set.seed(2)
     highlight(with(subset(cannon_reviews, number %in% sample(unique(number), 3)), sentiment_stanford_by(review, number)))
 
-![](inst/figure/highlight.png)
+![](tools/figure/highlight.png)
