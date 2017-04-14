@@ -11,6 +11,7 @@ Status](https://travis-ci.org/trinker/stansent.svg?branch=master)](https://travi
 Status](https://coveralls.io/repos/trinker/stansent/badge.svg?branch=master)](https://coveralls.io/r/trinker/stansent?branch=master)
 <a href="https://img.shields.io/badge/Version-0.2.0-orange.svg"><img src="https://img.shields.io/badge/Version-0.2.0-orange.svg" alt="Version"/></a>
 </p>
+
 ![](tools/stansent_logo/core-nlp.jpg)
 
 **stansent** wraps [Stanford's coreNLP sentiment
