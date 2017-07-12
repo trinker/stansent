@@ -157,7 +157,7 @@ plot.sentiment <- function(x, transformation.function = syuzhet::get_dct_transfo
 
 
 sentiment_stanford_helper <- function (text.var,
-    stanford.tagger = stansent::coreNLP_loc(), java.path = "java", ...) {
+    stanford.tagger = coreNLPsetup::coreNLP_loc(), java.path = "java", ...) {
 
     if (!file.exists(stanford.tagger)) {
         coreNLPsetup::check_stanford_installed(...)
